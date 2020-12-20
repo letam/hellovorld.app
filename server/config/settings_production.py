@@ -16,9 +16,10 @@ ALLOWED_HOSTS = ["bita.sh"]
 
 import dj_database_url
 import urllib.parse
+import os
 import getpass
 
-with open(f"/home/{getpass.getuser()}/.credentials/psql/bita_sh") as fd:
+with open(f"/home/{os.environ.get('SUDO_USER') or getpass.getuser()}/.credentials/psql/bita_sh") as fd:
 	credentials = {
 		var: val.rstrip("\n")
 		for var, val in [
