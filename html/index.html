@@ -4,19 +4,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Website Title</title>
+  <title>Bi the Change You Wish to Si</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.css"/>
+  <link rel="stylesheet" href="./index.css" />
 </head>
 
 <body>
-  <h1>
-    Hello World!
-  </h1>
-  <p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-    aliquam doloremque molestiae beatae est eligendi consectetur earum
-    adipisci non, odio consequatur, debitis dolores ab quos voluptate
-    doloribus, eveniet facilis eaque!
-  </p>
+  <div>
+    <div class="ma3">
+      <span>A Course on Computer Programming</span>
+    </div>
+
+    <div class="flex ma3">
+      <div id="lesson" class="flex-grow-1 mr3">
+        <h1 class="mv0">Lesson 1 - Hello World</h1>
+        <p>Let's create the world.</p>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+          aliquam doloremque molestiae beatae est eligendi consectetur earum
+          adipisci non, odio consequatur, debitis dolores ab quos voluptate
+          doloribus, eveniet facilis eaque!
+        </p>
+        <form id="editor-form">
+
+          <textarea name="editor" id="editor" class="w-100" rows="20" autocorrect="off" autocapitalize="off"
+            spellcheck="false"></textarea>
+
+          <div>
+            <input id="execute" type="submit" value="Execute" class="fr" />
+            <div class="cf"></div>
+          </div>
+        </form>
+      </div>
+
+      <div id="console">
+        <div id="output">
+          <div data-level="top" data-hidden="1" class="flex">
+            <canvas id="orule"></canvas>
+            <canvas id="xrule"></canvas>
+          </div>
+          <div data-level="middle" class="flex">
+            <div data-level="middle-left" data-hidden="1">
+              <canvas id="yrule"></canvas>
+            </div>
+            <div class="flex">
+              <div id="world-wrapper">
+                <canvas id="world"></canvas>
+              </div>
+              <div data-hidden="1">
+                <canvas id="yrule2"></canvas>
+              </div>
+            </div>
+          </div>
+          <div data-level="bottom" data-hidden="1"  class="flex">
+            <canvas id="orule2"></canvas>
+            <canvas id="xrule2"></canvas>
+          </div>
+        </div>
+        <div>
+          <button type="button" id="console-toggle-rules">Toggle Rules</button>
+          <!-- <button type="button" id="toggleKeyboardShortcuts">Toggle Keyboard Shortcuts</button> -->
+          <!-- <div id="statusKeyboardShortcuts"></div> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>
