@@ -3,3 +3,5 @@ tmp/
 *.pyc
 venv/
 secret_key.txt
+
+node_modules/
