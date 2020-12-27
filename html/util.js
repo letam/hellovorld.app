@@ -1,7 +1,7 @@
 import "/polyfills/trimStart.js"
 
 export function sleep(seconds) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, seconds * 1000)
   })
 }
@@ -17,7 +17,7 @@ export function strSplice(str, index, add = "") {
   return str.slice(0, index) + add + str.slice(index)
 }
 
-export const $ = function(query) {
+export const $ = function (query) {
   if (query.includes(" ")) {
     return document.querySelectorAll(query)
   } else if (query.startsWith("#")) {
