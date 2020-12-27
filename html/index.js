@@ -1,13 +1,13 @@
-import { sleep, strSplice, $ } from "/util.js"
+import { sleep, strSplice, $ } from '/util.js'
 
-console.log("hello")
+console.log('hello')
 
 function main() {
-  let lesson = document.getElementById("lesson")
-  let output = document.getElementById("output")
-  let worldWrapper = document.getElementById("world-wrapper")
+  let lesson = document.getElementById('lesson')
+  let output = document.getElementById('output')
+  let worldWrapper = document.getElementById('world-wrapper')
 
-  let debugFunction = () => console.log("DEBUG: debugFunction is empty.")
+  let debugFunction = () => console.log('DEBUG: debugFunction is empty.')
 
   let shouldTransitionOnEval = true
   let transitionOnEvalTime = 0.05
@@ -61,15 +61,15 @@ function main() {
       eventListeners = []
 
       /* clear requestAnimationFrames */
-      requestAnimationFrameIds.forEach(id => window.cancelAnimationFrame(id))
+      requestAnimationFrameIds.forEach((id) => window.cancelAnimationFrame(id))
       requestAnimationFrameIds = []
 
       /* clear setIntervals */
-      setIntervalIds.forEach(id => window.clearInterval(id))
+      setIntervalIds.forEach((id) => window.clearInterval(id))
       setIntervalIds = []
 
       /* clear setTimeouts */
-      setTimeoutIds.forEach(id => window.clearTimeout(id))
+      setTimeoutIds.forEach((id) => window.clearTimeout(id))
       setTimeoutIds = []
 
       if (shouldTransitionOnEval) {
@@ -117,10 +117,10 @@ function main() {
     return WORLD_SIZE.h
   }
 
-  let oruleCanvas = document.getElementById("orule")
+  let oruleCanvas = document.getElementById('orule')
   oruleCanvas.width = RULE_THICKNESS
   oruleCanvas.height = RULE_THICKNESS
-  let orule = oruleCanvas.getContext("2d")
+  let orule = oruleCanvas.getContext('2d')
   function createORule() {
     orule.lineWidth = 0.8
     strokeLine(
@@ -128,15 +128,15 @@ function main() {
       oruleCanvas.width - 1,
       oruleCanvas.height - 1,
       oruleCanvas.width,
-      oruleCanvas.height
+      oruleCanvas.height,
     )
   }
   createORule()
 
-  let xruleCanvas = document.getElementById("xrule")
+  let xruleCanvas = document.getElementById('xrule')
   xruleCanvas.width = getRuleCanvasWidthForX()
   xruleCanvas.height = RULE_THICKNESS
-  let xrule = xruleCanvas.getContext("2d")
+  let xrule = xruleCanvas.getContext('2d')
   function createXRule() {
     xrule.initialFont = xrule.font
 
@@ -147,7 +147,7 @@ function main() {
       WORLD_SIZE.w,
       xruleCanvas.height,
       xruleCanvas.width - RULE_FONT_SIZE,
-      xruleCanvas.height
+      xruleCanvas.height,
     )
     // draw x-arrow
     strokeLine(
@@ -155,10 +155,10 @@ function main() {
       WORLD_SIZE.w + RULE_TICK_LENGTH / 2,
       xruleCanvas.height - RULE_TICK_LENGTH / 2,
       xruleCanvas.width - RULE_FONT_SIZE,
-      xruleCanvas.height
+      xruleCanvas.height,
     )
-    xrule.font = "16px Arial"
-    xrule.fillText("x", xruleCanvas.width - 10, xruleCanvas.height)
+    xrule.font = '16px Arial'
+    xrule.fillText('x', xruleCanvas.width - 10, xruleCanvas.height)
 
     xrule.font = xrule.initialFont
     xrule.lineWidth = 0.8
@@ -176,10 +176,10 @@ function main() {
   }
   createXRule()
 
-  let yruleCanvas = document.getElementById("yrule")
+  let yruleCanvas = document.getElementById('yrule')
   yruleCanvas.height = getRuleCanvasHeightForY()
   yruleCanvas.width = RULE_THICKNESS
-  let yrule = yruleCanvas.getContext("2d")
+  let yrule = yruleCanvas.getContext('2d')
   function createYRule() {
     yrule.lineWidth = 2
     strokeLine(
@@ -188,7 +188,7 @@ function main() {
       0,
       yruleCanvas.width,
       // yruleCanvas.height - 16
-      yruleCanvas.height
+      yruleCanvas.height,
     )
     // yrule.initialFont = yrule.font
     // yrule.font = "16px Arial"
@@ -210,10 +210,10 @@ function main() {
   }
   createYRule()
 
-  let yruleCanvas2 = document.getElementById("yrule2")
+  let yruleCanvas2 = document.getElementById('yrule2')
   yruleCanvas2.height = getRuleCanvasHeightForY()
   yruleCanvas2.width = RULE_THICKNESS
-  let yrule2 = yruleCanvas2.getContext("2d")
+  let yrule2 = yruleCanvas2.getContext('2d')
   function createYRule2() {
     yrule2.lineWidth = 0.8
     strokeLine(yrule2, 0, 0, 0, yruleCanvas.height)
@@ -227,10 +227,10 @@ function main() {
   }
   createYRule2()
 
-  let oruleCanvas2 = document.getElementById("orule2")
+  let oruleCanvas2 = document.getElementById('orule2')
   oruleCanvas2.width = RULE_THICKNESS
   oruleCanvas2.height = RULE_THICKNESS
-  let orule2 = oruleCanvas2.getContext("2d")
+  let orule2 = oruleCanvas2.getContext('2d')
   function createORule2() {
     orule2.lineWidth = 2
     strokeLine(
@@ -238,7 +238,7 @@ function main() {
       oruleCanvas2.width,
       0,
       oruleCanvas2.width,
-      RULE_FONT_SIZE - RULE_FONT_SIZE / 4
+      RULE_FONT_SIZE - RULE_FONT_SIZE / 4,
     )
     // draw y-arrow
     strokeLine(
@@ -246,23 +246,23 @@ function main() {
       oruleCanvas2.width - RULE_TICK_LENGTH / 2,
       RULE_TICK_LENGTH / 2,
       oruleCanvas2.width,
-      RULE_FONT_SIZE - RULE_FONT_SIZE / 4
+      RULE_FONT_SIZE - RULE_FONT_SIZE / 4,
     )
 
     orule2.initialFont = orule2.font
-    orule2.font = "16px Arial"
+    orule2.font = '16px Arial'
     orule2.fillText(
-      "y",
+      'y',
       oruleCanvas2.width - 10,
-      RULE_TICK_LENGTH + getFontSize(orule2)
+      RULE_TICK_LENGTH + getFontSize(orule2),
     )
   }
   createORule2()
 
-  let xruleCanvas2 = document.getElementById("xrule2")
+  let xruleCanvas2 = document.getElementById('xrule2')
   xruleCanvas2.width = getRuleCanvasWidthForX()
   xruleCanvas2.height = RULE_THICKNESS
-  let xrule2 = xruleCanvas2.getContext("2d")
+  let xrule2 = xruleCanvas2.getContext('2d')
   function createXrule2() {
     xrule2.lineWidth = 0.8
     strokeLine(xrule2, 0, 0, xruleCanvas2.width - 25, 0)
@@ -280,17 +280,17 @@ function main() {
   function showRules() {
     document
       .querySelectorAll("#output [data-hidden='1']")
-      .forEach(el => el.setAttribute("data-hidden", 0))
+      .forEach((el) => el.setAttribute('data-hidden', 0))
     isRulesVisible = true
   }
   function hideRules() {
     document
       .querySelectorAll("#output [data-hidden='0']")
-      .forEach(el => el.setAttribute("data-hidden", 1))
+      .forEach((el) => el.setAttribute('data-hidden', 1))
     isRulesVisible = false
   }
 
-  document.getElementById("console-toggle-rules").addEventListener("click", e => {
+  document.getElementById('console-toggle-rules').addEventListener('click', (e) => {
     if (isRulesVisible) {
       hideRules()
     } else {
@@ -299,34 +299,34 @@ function main() {
   })
 
   let midContainer = document
-    .getElementById("console")
+    .getElementById('console')
     .querySelector("[data-level='middle']")
-  midContainer.style.height = WORLD_SIZE.h + "px"
+  midContainer.style.height = WORLD_SIZE.h + 'px'
 
-  let worldCanvas = document.getElementById("world")
+  let worldCanvas = document.getElementById('world')
   worldCanvas.width = WORLD_SIZE.w
   worldCanvas.height = WORLD_SIZE.h
-  let world = worldCanvas.getContext("2d")
+  let world = worldCanvas.getContext('2d')
 
   world.width = worldCanvas.width
-  world.setWidth = function(width) {
+  world.setWidth = function (width) {
     world.width = worldCanvas.width = width
     evalCode()
   }
 
   world.height = worldCanvas.height
-  world.setHeight = function(height) {
+  world.setHeight = function (height) {
     world.height = worldCanvas.height = height
     evalCode()
   }
 
   let initialState = {
-    worldColor: "white",
+    worldColor: 'white',
     fillStyle: world.fillStyle,
     font: world.font,
   }
 
-  world.reset = function() {
+  world.reset = function () {
     world.fillStyle = initialState.fillStyle
     world.fillRect(0, 0, worldCanvas.width, worldCanvas.height)
   }
@@ -343,7 +343,7 @@ function main() {
   // renderCanvas()
 
   /* a method to insert text where x and y refer to its origin on the grid */
-  world.text = function(text, x, y) {
+  world.text = function (text, x, y) {
     let fontHeight = world.getFontSize()
     world.fillText(text, x, y + fontHeight)
   }
@@ -356,23 +356,27 @@ function main() {
     world.fillRect(x, y, w, h)
   }
 
-  let editor = document.getElementById("editor")
-  editor.value = localStorage.getItem("editorContent")
-  editor.addEventListener("input", function(e) {
+  function rect(x, y, w, h) {
+    world.fillRect(x, y, w, h)
+  }
+
+  let editor = document.getElementById('editor')
+  editor.value = localStorage.getItem('editorContent')
+  editor.addEventListener('input', function (e) {
     // TODO: Create function to process value upon execution/saving
     // TODO: Update save event to strip alll trailing whitespace
-    localStorage.setItem("editorContent", e.target.value)
+    localStorage.setItem('editorContent', e.target.value)
   })
 
-  let editorForm = document.getElementById("editor-form")
-  editorForm.addEventListener("submit", function(e) {
+  let editorForm = document.getElementById('editor-form')
+  editorForm.addEventListener('submit', function (e) {
     // console.log('===',e)
     e.preventDefault()
     evalCode()
   })
 
-  editor.addEventListener("keydown", function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+  editor.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       e.preventDefault()
       evalCode()
     }
@@ -382,18 +386,18 @@ function main() {
   toggleTransitionOnEval(true)
   showRules() // DEBUG
 
-  console.log("initial editor.value", editor.value)
+  console.log('initial editor.value', editor.value)
   evalCode()
 
   /* utility functions */
   function getFontSize(ctx) {
-    let split = ctx.font.split(" ")
+    let split = ctx.font.split(' ')
     let size = split[split.length === 3 ? 1 : 0]
-    return parseInt(size.split("p")[0])
+    return parseInt(size.split('p')[0])
   }
-  function setFontSize(ctx, size = "10px") {
-    let split = ctx.font.split(" ")
-    if (typeof size === "number") size = size + "px"
+  function setFontSize(ctx, size = '10px') {
+    let split = ctx.font.split(' ')
+    if (typeof size === 'number') size = size + 'px'
     if (split.length === 3) {
       ctx.font = `${split[0]} ${size} ${split[2]}`
     } else {
@@ -406,25 +410,25 @@ function main() {
   /* editor stuff -- event listeners */
   function checkGlobalKeyEvent(e) {
     switch (e.key) {
-      case "e":
+      case 'e':
         evalCode()
         break
-      case ".":
+      case '.':
         console.log('global "."')
         break
-      case "d": // DEBUG
+      case 'd': // DEBUG
         // TODO: Add ability to toggle keyboard shortcuts
         // if (statusKeyboardShortcutsValue === "on")
         e.preventDefault()
         console.log('global "d')
         debugFunction()
         break
-      case "Enter":
+      case 'Enter':
       default:
         break
     }
   }
-  window._addEventListener("keydown", function(e) {
+  window._addEventListener('keydown', function (e) {
     if (e.metaKey || e.ctrlKey) {
       checkGlobalKeyEvent(e)
     }
@@ -469,16 +473,13 @@ function main() {
   //   console.log("selectionStart", start, startCode)
   //   console.log("selectionEnd", end, endCode)
   // })
-  editor.addEventListener("keydown", function(e) {
+  editor.addEventListener('keydown', function (e) {
     // console.log('editor.keydown', e)
     if (editor.selectionStart !== undefined) {
-      if (
-        e.key === "/" &&
-        (e.metaKey || e.ctrlKey)
-      ) {
+      if (e.key === '/' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
         commentListener(e)
-      } else if (e.key === "Tab") {
+      } else if (e.key === 'Tab') {
         e.preventDefault()
         tabListener(e)
       }
@@ -492,7 +493,7 @@ function main() {
     let codeBeforeLine = code.substring(0, lineStartIndex)
     let codeAfterLine = code.substring(lineEndIndex)
     let line = code.substring(lineStartIndex, lineEndIndex)
-    let isLineCommented = line.trimStart().indexOf("//") === 0
+    let isLineCommented = line.trimStart().indexOf('//') === 0
     if (isLineCommented) {
       uncommentSelection(
         code,
@@ -501,13 +502,13 @@ function main() {
         codeBeforeLine,
         codeAfterLine,
         selectionStart,
-        selectionEnd
+        selectionEnd,
       )
     } else {
       // TODO: Place comment immediately to the left of statement
       commentSelection(code, lineStartIndex, selectionStart, selectionEnd)
     }
-    localStorage.setItem("editorContent", editor.value)
+    localStorage.setItem('editorContent', editor.value)
     // TODO: Comment multiple lines
     // TODO: Uncomment multiple lines
 
@@ -519,7 +520,7 @@ function main() {
     let charsAdded = 0
     let lines =
       selectionStart !== selectionEnd
-        ? code.substring(lineStartIndex, selectionEnd).split("\n")
+        ? code.substring(lineStartIndex, selectionEnd).split('\n')
         : { length: 1 }
     // // TODO-DONE: Fine-tune to not use lines.join() and to not comment blank lines... must manually loop
     // editor.value =
@@ -530,22 +531,22 @@ function main() {
     if (lines.length > 1) {
       let replacementCode = code.substring(0, lineStartIndex)
       lines.forEach((line, i) => {
-        if (line !== "") {
-          replacementCode += "// "
-          charsAdded += "// ".length
+        if (line !== '') {
+          replacementCode += '// '
+          charsAdded += '// '.length
         }
         replacementCode += line
         if (i < lines.length - 1) {
-          replacementCode += "\n"
+          replacementCode += '\n'
         }
       })
       editor.value = replacementCode + code.substring(selectionEnd)
     } else {
-      charsAdded = "// ".length
-      editor.value = strSplice(code, lineStartIndex, "// ")
+      charsAdded = '// '.length
+      editor.value = strSplice(code, lineStartIndex, '// ')
     }
     /* Restore focus */
-    editor.selectionStart = selectionStart + (lines[0] !== "" ? "// ".length : 0)
+    editor.selectionStart = selectionStart + (lines[0] !== '' ? '// '.length : 0)
     if (selectionEnd === selectionStart) {
       // console.log("comment no highlight")
       editor.selectionEnd = editor.selectionStart
@@ -554,7 +555,7 @@ function main() {
       editor.selectionEnd = selectionEnd + charsAdded
     }
   }
-  const COMMENT_STYLES = ["// ", "//"]
+  const COMMENT_STYLES = ['// ', '//']
   function uncommentSelection(
     code,
     lineStartIndex,
@@ -562,39 +563,39 @@ function main() {
     codeBeforeLine,
     codeAfterLine,
     selectionStart,
-    selectionEnd
+    selectionEnd,
   ) {
-    let commentIndex = line.indexOf("//")
-    let commentStyle = line[commentIndex + 2] === " " ? "// " : "//"
+    let commentIndex = line.indexOf('//')
+    let commentStyle = line[commentIndex + 2] === ' ' ? '// ' : '//'
     let charsRemoved = 0
     // // TODO! uncomment when a bunch of blank lines before
     // console.log("uncomment")
     let lines =
       selectionStart !== selectionEnd
-        ? code.substring(lineStartIndex, selectionEnd).split("\n")
+        ? code.substring(lineStartIndex, selectionEnd).split('\n')
         : { length: 1 }
     if (lines.length > 1) {
       let replacementCode = code.substring(0, lineStartIndex)
-      lines.forEach(line => {
+      lines.forEach((line) => {
         let isCommented = false
         for (let i = 0, _len = COMMENT_STYLES.length; i < _len; i++) {
           let comment = COMMENT_STYLES[i]
           if (line.trimStart().startsWith(comment)) {
-            replacementCode += line.replace(RegExp(comment), "") + "\n"
+            replacementCode += line.replace(RegExp(comment), '') + '\n'
             isCommented = true
             charsRemoved += comment.length
             break
           }
         }
         if (!isCommented) {
-          replacementCode += line + "\n"
+          replacementCode += line + '\n'
         }
       })
       editor.value =
-        replacementCode.substring(0, replacementCode.length - "\n".length) +
+        replacementCode.substring(0, replacementCode.length - '\n'.length) +
         code.substring(selectionEnd)
     } else {
-      line = line.replace(new RegExp(commentStyle), "")
+      line = line.replace(new RegExp(commentStyle), '')
       editor.value = codeBeforeLine + line + codeAfterLine
     }
 
@@ -619,8 +620,8 @@ function main() {
       editor.selectionEnd = selectionEnd - charsRemoved
     } else {
       let lastLine = lines[lines.length - 1]
-      let commentIndex = lastLine.indexOf("//")
-      let commentStyle = lastLine[commentIndex + 2] === " " ? "// " : "//"
+      let commentIndex = lastLine.indexOf('//')
+      let commentStyle = lastLine[commentIndex + 2] === ' ' ? '// ' : '//'
       editor.selectionEnd = selectionEnd - commentStyle.length
       // TODO LESSON IDEA (MATH): calculate cycles per second. Calculate how long it takes for a certain calulation to occur.
       // e.g. how long it takes to count the length of a very long string (containing code)
@@ -635,15 +636,15 @@ function main() {
     } else {
       tabSelection(editor)
     }
-    localStorage.setItem("editorContent", editor.value)
+    localStorage.setItem('editorContent', editor.value)
   }
-  const TAB = "  "
-  const SPACE = " "
+  const TAB = '  '
+  const SPACE = ' '
   function tabSelection(editor) {
     let { value: code, selectionStart, selectionEnd } = editor
     let lineStartIndex = getLineStartIndex(editor)
     if (selectionStart === selectionEnd) {
-      if (code.substring(lineStartIndex, selectionStart).trim() !== "") {
+      if (code.substring(lineStartIndex, selectionStart).trim() !== '') {
         editor.value =
           code.substring(0, selectionStart) + TAB + code.substring(selectionStart)
       } else {
@@ -655,32 +656,32 @@ function main() {
     } else {
       let lines =
         selectionStart !== selectionEnd
-          ? code.substring(lineStartIndex, selectionEnd).split("\n")
+          ? code.substring(lineStartIndex, selectionEnd).split('\n')
           : { length: 1 }
       if (lines.length > 1) {
         let charsAdded = 0
         let replacementCode = code.substring(0, lineStartIndex)
         lines.forEach((line, i) => {
           // console.log('line')
-          if (line !== "") {
+          if (line !== '') {
             replacementCode += TAB + line
             charsAdded += TAB.length
           }
           if (i < lines.length - 1) {
-            replacementCode += "\n"
+            replacementCode += '\n'
           }
         })
         replacementCode += code.substring(selectionEnd)
         editor.value = replacementCode
-        editor.selectionStart = selectionStart + (lines[0] !== "" ? TAB.length : "")
+        editor.selectionStart = selectionStart + (lines[0] !== '' ? TAB.length : '')
         editor.selectionEnd = selectionEnd + charsAdded
       } else {
-        editor.value = code.substring(0, lineStartIndex) + TAB + code.substring(lineStartIndex)
+        editor.value =
+          code.substring(0, lineStartIndex) + TAB + code.substring(lineStartIndex)
         editor.selectionStart = selectionStart + TAB.length
         editor.selectionEnd = selectionEnd + TAB.length
       }
     }
-
   }
   function untabSelection(editor) {
     let { value: code, selectionStart, selectionEnd } = editor
@@ -690,10 +691,14 @@ function main() {
       let charsRemoved = 0
       let line = code.substring(lineStartIndex, lineEndIndex)
       if (line.startsWith(TAB)) {
-        editor.value = code.substring(0, lineStartIndex) + code.substring(lineStartIndex + TAB.length)
+        editor.value =
+          code.substring(0, lineStartIndex) +
+          code.substring(lineStartIndex + TAB.length)
         charsRemoved = TAB.length
       } else if (line.startsWith(SPACE)) {
-        editor.value = code.substring(0, lineStartIndex) + code.substring(lineStartIndex + SPACE.length)
+        editor.value =
+          code.substring(0, lineStartIndex) +
+          code.substring(lineStartIndex + SPACE.length)
         charsRemoved = SPACE.length
       }
       if (line.startsWith(SPACE)) {
@@ -706,13 +711,13 @@ function main() {
     } else {
       let lines =
         selectionStart !== selectionEnd
-          ? code.substring(lineStartIndex, selectionEnd).split("\n")
+          ? code.substring(lineStartIndex, selectionEnd).split('\n')
           : { length: 1 }
       if (lines.length > 1) {
         let replacementCode = code.substring(0, lineStartIndex)
         let charsRemoved = 0
         lines.forEach((line, i) => {
-          if (line !== "") {
+          if (line !== '') {
             if (line.startsWith(TAB)) {
               replacementCode += line.substring(TAB.length)
               charsRemoved += TAB.length
@@ -724,14 +729,16 @@ function main() {
             }
           }
           if (i < lines.length - 1) {
-            replacementCode += "\n"
+            replacementCode += '\n'
           }
         })
         replacementCode += code.substring(selectionEnd)
         editor.value = replacementCode
         let firstLine = lines[0]
         if (firstLine.startsWith(SPACE)) {
-          let charsRemovedFromFirstLine = firstLine.startsWith(TAB) ? TAB.length : SPACE.length
+          let charsRemovedFromFirstLine = firstLine.startsWith(TAB)
+            ? TAB.length
+            : SPACE.length
           editor.selectionStart =
             selectionStart - charsRemovedFromFirstLine < lineStartIndex
               ? lineStartIndex
@@ -745,8 +752,9 @@ function main() {
         if (line.startsWith(SPACE)) {
           let charsRemoved = line.startsWith(TAB) ? TAB.length : SPACE.length
           editor.value =
-            code.substring(0, lineStartIndex) + code.substring(lineStartIndex + charsRemoved)
-            editor.selectionStart =
+            code.substring(0, lineStartIndex) +
+            code.substring(lineStartIndex + charsRemoved)
+          editor.selectionStart =
             selectionStart - charsRemoved < lineStartIndex
               ? lineStartIndex
               : selectionStart - charsRemoved
