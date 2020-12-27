@@ -18,3 +18,8 @@
 [data-hidden="1"] {
   visibility: hidden;
 }
+
+.darkmode {
+  background-color: rgba(36, 36, 36, 1);
+  color: rgba(216, 216, 216, 1);
+}

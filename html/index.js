@@ -2,6 +2,9 @@ import { sleep, strSplice, $ } from "/util.js"
 
 console.log("hello")
 
+let bag = {}
+let currentTheme = localStorage.getItem("theme") || "dark"
+
 function main() {
   let lesson = document.getElementById("lesson")
   let output = document.getElementById("output")
@@ -121,7 +124,9 @@ function main() {
   oruleCanvas.width = RULE_THICKNESS
   oruleCanvas.height = RULE_THICKNESS
   let orule = oruleCanvas.getContext("2d")
+  let oruleBak = { strokeStyle: orule.strokeStyle }
   function createORule() {
+    orule.strokeStyle = currentTheme === "dark" ? "white" : "black"
     orule.lineWidth = 0.8
     strokeLine(
       orule,
@@ -130,16 +135,18 @@ function main() {
       oruleCanvas.width,
       oruleCanvas.height,
     )
+    orule.strokeStyle = oruleBak.strokeStyle
   }
-  createORule()
 
   let xruleCanvas = document.getElementById("xrule")
   xruleCanvas.width = getRuleCanvasWidthForX()
   xruleCanvas.height = RULE_THICKNESS
   let xrule = xruleCanvas.getContext("2d")
+  let xruleBak = { strokeStyle: xrule.strokeStyle, fillStyle: xrule.fillStyle }
   function createXRule() {
+    xrule.strokeStyle = currentTheme === "dark" ? "white" : "black"
+    xrule.fillStyle = currentTheme === "dark" ? "white" : "black"
     xrule.initialFont = xrule.font
-
     xrule.lineWidth = 2
     strokeLine(xrule, 0, xruleCanvas.height, WORLD_SIZE.w, xruleCanvas.height)
     strokeLine(
@@ -173,23 +180,21 @@ function main() {
       }
       strokeLine(xrule, i, xruleCanvas.height, i, xruleCanvas.height - tickLength)
     }
+
+    xrule.strokeStyle = xruleBak.strokeStyle
+    xrule.fillStyle = xruleBak.fillStyle
   }
-  createXRule()
 
   let yruleCanvas = document.getElementById("yrule")
   yruleCanvas.height = getRuleCanvasHeightForY()
   yruleCanvas.width = RULE_THICKNESS
   let yrule = yruleCanvas.getContext("2d")
+  let yruleBak = { strokeStyle: yrule.strokeStyle, fillStyle: yrule.fillStyle }
   function createYRule() {
+    yrule.strokeStyle = currentTheme === "dark" ? "white" : "black"
+    yrule.fillStyle = currentTheme === "dark" ? "white" : "black"
     yrule.lineWidth = 2
-    strokeLine(
-      yrule,
-      yruleCanvas.width,
-      0,
-      yruleCanvas.width,
-      // yruleCanvas.height - 16
-      yruleCanvas.height,
-    )
+    strokeLine(yrule, yruleCanvas.width, 0, yruleCanvas.width, yruleCanvas.height)
     // yrule.initialFont = yrule.font
     // yrule.font = "16px Arial"
     // yrule.fillText("y", yruleCanvas.width - 10, yruleCanvas.height - 5)
@@ -207,14 +212,18 @@ function main() {
       }
       strokeLine(yrule, yruleCanvas.width, i, yruleCanvas.width - tickLength, i)
     }
+
+    yrule.strokeStyle = yruleBak.strokeStyle
+    yrule.fillStyle = yruleBak.fillStyle
   }
-  createYRule()
 
   let yruleCanvas2 = document.getElementById("yrule2")
   yruleCanvas2.height = getRuleCanvasHeightForY()
   yruleCanvas2.width = RULE_THICKNESS
   let yrule2 = yruleCanvas2.getContext("2d")
+  let yrule2Bak = { strokeStyle: orule.strokeStyle }
   function createYRule2() {
+    yrule2.strokeStyle = currentTheme === "dark" ? "white" : "black"
     yrule2.lineWidth = 0.8
     strokeLine(yrule2, 0, 0, 0, yruleCanvas.height)
     for (let i = 0; i <= yruleCanvas.height; i += 50) {
@@ -224,14 +233,17 @@ function main() {
         strokeLine(yrule2, 0, i, 0 + tickLength, i)
       }
     }
+    yrule2.strokeStyle = yrule2Bak.strokeStyle
   }
-  createYRule2()
 
   let oruleCanvas2 = document.getElementById("orule2")
   oruleCanvas2.width = RULE_THICKNESS
   oruleCanvas2.height = RULE_THICKNESS
   let orule2 = oruleCanvas2.getContext("2d")
+  let orule2Bak = { strokeStyle: orule2.strokeStyle, fillStyle: orule2.fillStyle }
   function createORule2() {
+    orule2.strokeStyle = currentTheme === "dark" ? "white" : "black"
+    orule2.fillStyle = currentTheme === "dark" ? "white" : "black"
     orule2.lineWidth = 2
     strokeLine(
       orule2,
@@ -256,14 +268,18 @@ function main() {
       oruleCanvas2.width - 10,
       RULE_TICK_LENGTH + getFontSize(orule2),
     )
+
+    orule2.strokeStyle = orule2Bak.strokeStyle
+    orule2.fillStyle = orule2Bak.fillStyle
   }
-  createORule2()
 
   let xruleCanvas2 = document.getElementById("xrule2")
   xruleCanvas2.width = getRuleCanvasWidthForX()
   xruleCanvas2.height = RULE_THICKNESS
   let xrule2 = xruleCanvas2.getContext("2d")
+  let xrule2Bak = { strokeStyle: orule.strokeStyle }
   function createXrule2() {
+    xrule2.strokeStyle = currentTheme === "dark" ? "white" : "black"
     xrule2.lineWidth = 0.8
     strokeLine(xrule2, 0, 0, xruleCanvas2.width - 25, 0)
     for (let i = 0; i < xruleCanvas2.width; i += 50) {
@@ -273,8 +289,18 @@ function main() {
         strokeLine(xrule2, i, 0, i, tickLength)
       }
     }
+    xrule2.strokeStyle = xrule2Bak.strokeStyle
   }
-  createXrule2()
+
+  bag.createCanvasRule = function createCanvasRule() {
+    createORule()
+    createXRule()
+    createYRule()
+    createYRule2()
+    createORule2()
+    createXrule2()
+  }
+  bag.createCanvasRule()
 
   let isRulesVisible = false
   function showRules() {
@@ -768,6 +794,36 @@ function main() {
   window.f = {
     toggleTransitionOnEval,
     setTransitionOnEvalTime,
+  }
+
+  themeConfiguration()
+  //
+}
+
+function themeConfiguration() {
+  let editor = document.getElementById("editor")
+  function setDarkmodeTheme() {
+    document.body.classList.add("bg-black-90", "near-white")
+    editor.classList.add("darkmode")
+    currentTheme = "dark"
+    localStorage.setItem("theme", currentTheme)
+  }
+  function setLightmodeTheme() {
+    document.body.classList.remove("bg-black-90", "near-white")
+    editor.classList.remove("darkmode")
+    currentTheme = "light"
+    localStorage.setItem("theme", currentTheme)
+  }
+  document.getElementById("toggle-theme").addEventListener("click", (e) => {
+    if (currentTheme === "dark") {
+      setLightmodeTheme()
+    } else if (currentTheme === "light") {
+      setDarkmodeTheme()
+    }
+    bag.createCanvasRule()
+  })
+  if (currentTheme === "dark") {
+    setDarkmodeTheme()
   }
 }
 
