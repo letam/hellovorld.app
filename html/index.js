@@ -292,7 +292,7 @@ function main() {
     xrule2.strokeStyle = xrule2Bak.strokeStyle
   }
 
-  bag.createCanvasRule = function createCanvasRule() {
+  bag.createCanvasRule = function () {
     createORule()
     createXRule()
     createYRule()
