@@ -300,7 +300,6 @@ function main() {
     createORule2()
     createXrule2()
   }
-  bag.createCanvasRule()
 
   let isRulesVisible = false
   function showRules() {
@@ -832,9 +831,7 @@ function themeConfiguration() {
       setTheme("dark")
     }
   })
-  if (currentTheme === "dark") {
-    setDarkmodeTheme()
-  }
+  setTheme(currentTheme)
 }
 
 main()
