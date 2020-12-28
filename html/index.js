@@ -796,7 +796,6 @@ function main() {
   }
 
   themeConfiguration()
-  revealDocumentBody()
   //
 }
 
@@ -833,12 +832,17 @@ function themeConfiguration() {
     }
   })
   setTheme(currentTheme)
+  revealDocumentBody()
 }
 
 function revealDocumentBody() {
   // Set transition animation property
   let transitionDuration = 1.5
-  document.body.style.transition = `opacity ${transitionDuration}s ease-in-out`
+  let transitions = [
+    `opacity ${transitionDuration}s ease-in-out`,
+    `background-color ${transitionDuration}s`,
+  ]
+  document.body.style.transition = transitions.join()
 
   // Remove black background and restore full opacity
   document.body.classList.remove("bg-black")
