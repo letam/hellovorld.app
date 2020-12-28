@@ -833,6 +833,7 @@ function themeConfiguration() {
   })
   setTheme(currentTheme)
   revealDocumentBody()
+  revealEditor()
 }
 
 function revealDocumentBody() {
@@ -847,6 +848,22 @@ function revealDocumentBody() {
   // Remove black background and restore full opacity
   document.body.classList.remove("bg-black")
   document.body.classList.remove("o-01")
+}
+
+function revealEditor() {
+  // Set transition animation property
+  let editor = document.getElementById("editor")
+  let transitionDuration = 1.5
+  let transitions = [
+    `opacity ${transitionDuration}s ease-in-out`,
+    `background-color ${transitionDuration}s`,
+    `color ${transitionDuration}s`,
+  ]
+  editor.style.transition = transitions.join()
+
+  // Remove black background and restore full opacity
+  editor.classList.remove("bg-black")
+  editor.classList.remove("o-01")
 }
 
 main()
