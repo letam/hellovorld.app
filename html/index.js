@@ -814,13 +814,23 @@ function themeConfiguration() {
     currentTheme = "light"
     localStorage.setItem("theme", currentTheme)
   }
-  document.getElementById("toggle-theme").addEventListener("click", (e) => {
-    if (currentTheme === "dark") {
-      setLightmodeTheme()
-    } else if (currentTheme === "light") {
-      setDarkmodeTheme()
+  function setTheme(theme) {
+    switch (theme) {
+      case "dark":
+        setDarkmodeTheme()
+        break
+      case "light":
+        setLightmodeTheme()
+        break
     }
     bag.createCanvasRule()
+  }
+  document.getElementById("toggle-theme").addEventListener("click", (e) => {
+    if (currentTheme === "dark") {
+      setTheme("light")
+    } else if (currentTheme === "light") {
+      setTheme("dark")
+    }
   })
   if (currentTheme === "dark") {
     setDarkmodeTheme()
