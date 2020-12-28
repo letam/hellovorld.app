@@ -23,3 +23,7 @@
   background-color: rgba(36, 36, 36, 1);
   color: rgba(216, 216, 216, 1);
 }
+
+.o-01 {
+  opacity: 0.01;
+}

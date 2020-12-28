@@ -796,6 +796,7 @@ function main() {
   }
 
   themeConfiguration()
+  revealDocumentBody()
   //
 }
 
@@ -832,6 +833,16 @@ function themeConfiguration() {
     }
   })
   setTheme(currentTheme)
+}
+
+function revealDocumentBody() {
+  // Set transition animation property
+  let transitionDuration = 1.5
+  document.body.style.transition = `opacity ${transitionDuration}s ease-in-out`
+
+  // Remove black background and restore full opacity
+  document.body.classList.remove("bg-black")
+  document.body.classList.remove("o-01")
 }
 
 main()
