@@ -815,6 +815,7 @@ function main() {
     setTransitionOnEvalTime,
   }
   window.w = world
+  window.log = (...args) => console.log(...args)
 
   themeConfiguration()
   //
