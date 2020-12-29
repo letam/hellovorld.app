@@ -34,6 +34,8 @@ function main() {
     eventListeners.push({ type, listener, options })
     window._addEventListener(type, listener, options)
   }
+  // eslint-disable-next-line no-unused-vars
+  let ael = addEventListener
 
   /* requestAnimationFrame management */
   let requestAnimationFrameIds = []
@@ -382,10 +384,18 @@ function main() {
   function setColor(color) {
     world.fillStyle = color
   }
+  // eslint-disable-next-line no-unused-vars
+  function sc(color) {
+    world.fillStyle = color
+  }
 
   // eslint-disable-next-line no-unused-vars
   function fillRect(x, y, w, h) {
     world.fillRect(x, y, w, h)
+  }
+  // eslint-disable-next-line no-unused-vars
+  function fr(...args) {
+    world.fillRect(...args)
   }
 
   let editor = document.getElementById("editor")
@@ -801,6 +811,7 @@ function main() {
     toggleTransitionOnEval,
     setTransitionOnEvalTime,
   }
+  window.w = world
 
   themeConfiguration()
   //
