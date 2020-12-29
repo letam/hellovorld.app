@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { sleep, strSplice, $ } from "/util.js"
 
 console.log("hello")
@@ -6,8 +7,11 @@ let bag = {}
 let currentTheme = localStorage.getItem("theme") || "dark"
 
 function main() {
+  // eslint-disable-next-line no-unused-vars
   let lesson = document.getElementById("lesson")
+  // eslint-disable-next-line no-unused-vars
   let output = document.getElementById("output")
+  // eslint-disable-next-line no-unused-vars
   let worldWrapper = document.getElementById("world-wrapper")
 
   let debugFunction = () => console.log("DEBUG: debugFunction is empty.")
@@ -315,6 +319,7 @@ function main() {
     isRulesVisible = false
   }
 
+  // eslint-disable-next-line no-unused-vars
   document.getElementById("console-toggle-rules").addEventListener("click", (e) => {
     if (isRulesVisible) {
       hideRules()
@@ -373,10 +378,12 @@ function main() {
     world.fillText(text, x, y + fontHeight)
   }
 
+  // eslint-disable-next-line no-unused-vars
   function setColor(color) {
     world.fillStyle = color
   }
 
+  // eslint-disable-next-line no-unused-vars
   function fillRect(x, y, w, h) {
     world.fillRect(x, y, w, h)
   }
@@ -824,6 +831,8 @@ function themeConfiguration() {
     }
     bag.createCanvasRule()
   }
+
+  // eslint-disable-next-line no-unused-vars
   document.getElementById("toggle-theme").addEventListener("click", (e) => {
     if (currentTheme === "dark") {
       setTheme("light")
