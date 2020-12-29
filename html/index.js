@@ -400,6 +400,9 @@ function main() {
 
   let editor = document.getElementById("editor")
   editor.value = localStorage.getItem("editorContent")
+  if (editor.value.trim() === "") {
+    editor.value = getInitialEditorValue()
+  }
   editor.addEventListener("input", function (e) {
     // TODO: Create function to process value upon execution/saving
     // TODO: Update save event to strip alll trailing whitespace
@@ -884,6 +887,18 @@ function revealEditor() {
   // Remove black background and restore full opacity
   editor.classList.remove("bg-black")
   editor.classList.remove("o-01")
+}
+
+function getInitialEditorValue() {
+  return `// draw water
+sc('aqua')
+fr(0, 0, w.width, w.height)
+
+// draw bottom
+var height = 50
+sc('green')
+fr(0, w.height - height, w.width, height)
+`
 }
 
 main()
