@@ -401,7 +401,17 @@ function main() {
   let editor = document.getElementById("editor")
   editor.value = localStorage.getItem("editorContent")
   if (editor.value.trim() === "") {
-    editor.value = getInitialEditorValue()
+    editor.value = ""
+    /* Load introduction script */
+    let initialEditorValue = getInitialEditorValue()
+    let i = 0
+    for (let char of Array.from(initialEditorValue)) {
+      setTimeout(() => (editor.value += char), 10 * i)
+      i += 1
+    }
+    setTimeout(evalCode, 10 * initialEditorValue.length + 250)
+  } else {
+    setTimeout(evalCode, 1000 * 1.25)
   }
   editor.addEventListener("input", function (e) {
     // TODO: Create function to process value upon execution/saving
@@ -426,9 +436,6 @@ function main() {
   /* INITIAL SETTINGS */
   toggleTransitionOnEval(true)
   showRules() // DEBUG
-
-  console.log("initial editor.value", editor.value)
-  evalCode()
 
   /* utility functions */
   function getFontSize(ctx) {
