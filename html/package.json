@@ -6,6 +6,9 @@
   "repository": "https://github.com/letam/bita.sh",
   "author": "Tam Le",
   "license": "MIT",
+  "scripts": {
+    "build": "esbuild index.js --bundle --minify --outfile=bundle.js"
+  },
   "dependencies": {
     "esbuild": "^0.8.27"
   },
