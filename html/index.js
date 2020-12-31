@@ -400,18 +400,38 @@ function main() {
 
   let editor = document.getElementById("editor")
   editor.value = localStorage.getItem("editorContent")
+  let delayUntilStartTyping = 1000 * 1.25
   if (editor.value.trim() === "") {
     editor.value = ""
-    /* Load introduction script */
-    let initialEditorValue = getInitialEditorValue()
-    let i = 0
-    for (let char of Array.from(initialEditorValue)) {
-      setTimeout(() => (editor.value += char), 10 * i)
-      i += 1
+    /* Load introduction message and script in editor */
+    let welcomeMessage = getEditorWelcomeMessage()
+    let welcomeMessageTypingSpeed = 30
+    let initialScriptTypingSpeed = 15
+    let initialScript = getEditorInitialScript()
+    setTimeout(loadWelcomeMessage, delayUntilStartTyping)
+    setTimeout(
+      loadInitialScript,
+      delayUntilStartTyping + welcomeMessageTypingSpeed * welcomeMessage.length,
+    )
+    setTimeout(() => {
+      evalCode()
+    }, delayUntilStartTyping + welcomeMessageTypingSpeed * welcomeMessage.length + initialScriptTypingSpeed * initialScript.length)
+    function loadWelcomeMessage() {
+      let i = 0
+      for (let char of Array.from(welcomeMessage)) {
+        setTimeout(() => (editor.value += char), welcomeMessageTypingSpeed * i)
+        i += 1
+      }
     }
-    setTimeout(evalCode, 10 * initialEditorValue.length + 250)
+    function loadInitialScript() {
+      let i = 0
+      for (let char of Array.from(initialScript)) {
+        setTimeout(() => (editor.value += char), initialScriptTypingSpeed * i)
+        i += 1
+      }
+    }
   } else {
-    setTimeout(evalCode, 1000 * 1.25)
+    setTimeout(evalCode, delayUntilStartTyping)
   }
   editor.addEventListener("input", function (e) {
     // TODO: Create function to process value upon execution/saving
@@ -897,13 +917,17 @@ function revealEditor() {
   editor.classList.remove("o-01")
 }
 
-function getInitialEditorValue() {
+function getEditorWelcomeMessage() {
   return `// Hello there!
 // This is a place for you to write a computer program, or "code script".
 
 // Here's an example of how to create a body of water...
 
+`
+}
 
+function getEditorInitialScript() {
+  return `
 // draw water
 setColor('aqua')
 fillRect(0, 0, world.width, world.height)
