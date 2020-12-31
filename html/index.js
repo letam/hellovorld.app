@@ -891,7 +891,13 @@ function revealEditor() {
 }
 
 function getInitialEditorValue() {
-  return `// set a variable so that we can type fewer characters
+  return `// Hello There!
+// This is a place for you to write a computer program, or "code script".
+
+// Here's an example of how to create a world...
+
+
+// set a variable so that we can type fewer characters
 var w = world
 
 // draw water
