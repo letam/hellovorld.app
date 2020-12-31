@@ -6,7 +6,9 @@
   "repository": "https://github.com/letam/bita.sh",
   "author": "Tam Le",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "esbuild": "^0.8.27"
+  },
   "devDependencies": {
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
