@@ -891,7 +891,10 @@ function revealEditor() {
 }
 
 function getInitialEditorValue() {
-  return `// draw water
+  return `// set a variable so that we can type fewer characters
+var w = world
+
+// draw water
 sc('aqua')
 fr(0, 0, w.width, w.height)
 
