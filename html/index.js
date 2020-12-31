@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { sleep, strSplice, $ } from "/util.js"
+import { sleep, strSplice, $ } from "./util.js"
 
 console.log("hello")
 

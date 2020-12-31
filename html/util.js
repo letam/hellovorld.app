@@ -1,4 +1,4 @@
-import "/polyfills/trimStart.js"
+import "./polyfills/trimStart.js"
 
 export function sleep(seconds) {
   return new Promise((resolve) => {
