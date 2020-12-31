@@ -898,23 +898,20 @@ function revealEditor() {
 }
 
 function getInitialEditorValue() {
-  return `// Hello There!
+  return `// Hello there!
 // This is a place for you to write a computer program, or "code script".
 
-// Here's an example of how to create a world...
+// Here's an example of how to create a body of water...
 
-
-// set a variable so that we can type fewer characters
-var w = world
 
 // draw water
-sc('aqua')
-fr(0, 0, w.width, w.height)
+setColor('aqua')
+fillRect(0, 0, world.width, world.height)
 
 // draw bottom
 var height = 50
-sc('green')
-fr(0, w.height - height, w.width, height)
+setColor('green')
+fillRect(0, world.height - height, world.width, height)
 `
 }
 
