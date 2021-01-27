@@ -27,3 +27,9 @@
 .o-01 {
   opacity: 0.01;
 }
+
+.arrow-buttons {
+  /* FIXME: Get arrows to be non-selectable on touch devices */
+  user-select: none;
+  -webkit-touch-callout: none;
+}

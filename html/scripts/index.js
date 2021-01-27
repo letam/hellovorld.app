@@ -1143,3 +1143,5 @@ function scrollToBottomOfEditor() {
 
 
 main()
+
+import "./gui/buttons.js"
