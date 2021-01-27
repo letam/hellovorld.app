@@ -7,7 +7,7 @@
   "author": "Tam Le",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild index.js --bundle --minify --sourcemap --outfile=bundle.js"
+    "build": "esbuild scripts/index.js --bundle --minify --sourcemap --outfile=bundle.js"
   },
   "dependencies": {
     "esbuild": "^0.8.27"
