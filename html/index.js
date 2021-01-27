@@ -400,39 +400,84 @@ function main() {
 
   let editor = document.getElementById("editor")
   editor.value = localStorage.getItem("editorContent")
-  let delayUntilStartTyping = 1000 * 1.25
-  if (editor.value.trim() === "") {
-    editor.value = ""
-    /* Load introduction message and script in editor */
-    let welcomeMessage = getEditorWelcomeMessage()
-    let welcomeMessageTypingSpeed = 30
-    let initialScriptTypingSpeed = 15
-    let initialScript = getEditorInitialScript()
-    setTimeout(loadWelcomeMessage, delayUntilStartTyping)
-    setTimeout(
-      loadInitialScript,
-      delayUntilStartTyping + welcomeMessageTypingSpeed * welcomeMessage.length,
-    )
-    setTimeout(() => {
-      evalCode()
-    }, delayUntilStartTyping + welcomeMessageTypingSpeed * welcomeMessage.length + initialScriptTypingSpeed * initialScript.length)
-    function loadWelcomeMessage() {
-      let i = 0
-      for (let char of Array.from(welcomeMessage)) {
-        setTimeout(() => (editor.value += char), welcomeMessageTypingSpeed * i)
-        i += 1
+  let cancelTypingInitialValue = false
+  let editorContentInitialized = false
+  // TODO: Refactor this mess
+  function initializeEditorContent() {
+    let delayUntilStartTyping = 1000 * 1.25
+    if (editor.value.trim() === "") {
+      editor.value = ""
+      /* Load introduction message and script in editor */
+      let welcomeMessage = getEditorWelcomeMessage()
+      let welcomeMessageTypingSpeed = 30
+      let initialScriptTypingSpeed = 15
+      let initialScript = getEditorInitialScript()
+      setTimeout(loadWelcomeMessage, delayUntilStartTyping)
+      setTimeout(
+        loadInitialScript,
+        delayUntilStartTyping + welcomeMessageTypingSpeed * welcomeMessage.length,
+      )
+      setTimeout(() => {
+        if (cancelTypingInitialValue) return
+        evalCode()
+        editorContentInitialized = true
+      }, delayUntilStartTyping + welcomeMessageTypingSpeed * welcomeMessage.length + initialScriptTypingSpeed * initialScript.length)
+      // TODO: Find out why Safari loads content with extra newlines at 'draw water'
+      // TODO: Rewrite to use promises
+      // TODO: Restructure to easily load scripts in chain/array
+      function loadWelcomeMessage() {
+        let i = 0
+        for (let char of Array.from(welcomeMessage)) {
+          if (cancelTypingInitialValue) break
+          setTimeout(() => {
+            if (cancelTypingInitialValue) return
+            editor.value += char
+          }, welcomeMessageTypingSpeed * i)
+          i += 1
+        }
       }
-    }
-    function loadInitialScript() {
-      let i = 0
-      for (let char of Array.from(initialScript)) {
-        setTimeout(() => (editor.value += char), initialScriptTypingSpeed * i)
-        i += 1
+      function loadInitialScript() {
+        let i = 0
+        for (let char of Array.from(initialScript)) {
+          if (cancelTypingInitialValue) break
+          setTimeout(() => {
+            if (cancelTypingInitialValue) return
+            editor.value += char
+          }, initialScriptTypingSpeed * i)
+          i += 1
+        }
       }
+    } else {
+      setTimeout(evalCode, delayUntilStartTyping)
+      editorContentInitialized = true
     }
-  } else {
-    setTimeout(evalCode, delayUntilStartTyping)
   }
+
+  // If this document tab is active upon page load, then load editor content gradually
+  if (!document.hidden) initializeEditorContent()
+
+  /* BEGIN Detect document focus status change for initializing editor content {{{ */
+  // Add listener to detect if document tab is not active
+  // TODO: Find a way to clear/pause all timeouts above when status changes
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      // If user switches away from this tab, then load all content instantaneously
+      if (editorContentInitialized) return
+      cancelTypingInitialValue = true
+      setTimeout(() => {
+        let welcomeMessage = getEditorWelcomeMessage()
+        let initialScript = getEditorInitialScript()
+        editor.value = welcomeMessage + initialScript
+      }, 300)
+      editorContentInitialized = true
+    } else {
+      // If user switches to this tab for the first time, then load content gradually
+      if (editorContentInitialized) return
+      initializeEditorContent()
+    }
+  })
+  /* }}} END Detect document focus status change for initializing editor content */
+
   editor.addEventListener("input", function (e) {
     // TODO: Create function to process value upon execution/saving
     // TODO: Update save event to strip alll trailing whitespace
