@@ -536,6 +536,9 @@ function main() {
         console.log('global "d')
         debugFunction()
         break
+      case " ":
+        magicFn()
+        break
       case "Enter":
       default:
         break
@@ -546,6 +549,18 @@ function main() {
       checkGlobalKeyEvent(e)
     }
   })
+
+  /* editor stuff -- magic */
+  function magicFn() {
+    if (editor.value.includes("// Game Loop")) {
+      return
+    }
+    editor.value += platformerScript
+    setTimeout(() => scrollToBottomOfEditor(), 500)
+    setTimeout(() => evalCode(), 1000)
+  }
+
+  /* editor stuff -- line changes */
 
   const NEW_LINE = 10
 
@@ -978,10 +993,147 @@ setColor('aqua')
 fillRect(0, 0, world.width, world.height)
 
 // draw bottom
-var height = 50
+var grassHeight = 50
 setColor('green')
-fillRect(0, world.height - height, world.width, height)
+fillRect(0, world.height - grassHeight, world.width, grassHeight)
+
+
+// Press CTRL+Space for some magic.
+
 `
 }
+
+var platformerScript = `
+// draw avatar
+var avatarDimensions = {
+  height: 25,
+  width: 25
+}
+var avatarPosition = {
+  x: 0,
+  y: world.height - grassHeight - avatarDimensions.height,
+  onGround: false,
+}
+var ad = avatarDimensions
+var ap = avatarPosition
+setColor('tan')
+fillRect(ap.x, ap.y, ad.width, ad.height)
+
+var moveDistance = 10
+
+function drawWorld() {
+  // draw water
+  setColor('aqua')
+  fillRect(0, 0, world.width, world.height)
+
+  // draw bottom
+  var grassHeight = 50
+  setColor('green')
+  fillRect(0, world.height - grassHeight, world.width, grassHeight)
+}
+
+function drawAvatar() {
+  setColor('tan')
+  fillRect(ap.x, ap.y, ad.width, ad.height)
+}
+
+// addEventListener('keydown', function(event) {
+//   if (event.key == 'ArrowUp') {
+//     ap.y = ap.y - moveDistance
+//   } else if (event.key == 'ArrowRight') {
+//     ap.x = ap.x + moveDistance
+//   } else if (event.key == 'ArrowDown') {
+//     ap.y = ap.y + moveDistance
+//   } else if (event.key == 'ArrowLeft') {
+//     ap.x = ap.x - moveDistance
+//   }
+// })
+
+function updateUniverse() {
+  // update state
+  if (holdLeft) {
+    avatarVelocity.x = -2
+  }
+  if (holdRight) {
+    avatarVelocity.x = 2
+  }
+  avatarPosition.x = avatarPosition.x + avatarVelocity.x
+  avatarPosition.y = avatarPosition.y + avatarVelocity.y
+  if (avatarPosition.onGround) {
+    avatarVelocity.x *= 0.8
+  } else {
+    avatarVelocity.y += gravity
+  }
+  avatarPosition.onGround = false
+  checkIfOnGround()
+
+  // draw universe
+  drawWorld()
+  drawAvatar()
+}
+
+// Begin logic for physics simulation
+var gravity = 0.5
+var holdLeft = false
+var holdRight = false
+var avatarVelocity = {
+  x: 0,
+  y: 0
+}
+var av = avatarVelocity
+
+function checkIfOnGround() {
+// TODO: Make easier to understand
+  var grassY = world.height - grassHeight
+  if(ap.y + ad.height > grassY) {
+    ap.y = grassY - ad.height;
+    ap.onGround = true;
+  }
+}
+
+addEventListener('keydown', function(event) {
+  if (event.key == 'ArrowLeft') {
+    holdLeft = true
+  }
+  if (event.key == 'ArrowUp') {
+    if (ap.onGround) {
+      av.y = -10
+    }
+  }
+  if (event.key == 'ArrowRight') {
+    holdRight = true
+  }
+})
+
+addEventListener('keyup', function(event) {
+  if (event.key == 'ArrowLeft') {
+    holdLeft = false
+  }
+  if (event.key == 'ArrowUp') {
+    if (av.y < -3) {
+      av.y = -3
+    }
+  }
+  if (event.key == 'ArrowRight') {
+    holdRight = false
+  }
+})
+
+
+// Game Loop
+setInterval(updateUniverse, 1000/60)
+`
+
+function scrollToLineOfTextarea(textarea, line) {
+  let lineHeight = textarea.scrollHeight / textarea.rows
+  let position = (line - 1) * lineHeight
+  textarea.scroll({ behavior: "smooth", left: 0, top: position })
+}
+
+function scrollToBottomOfEditor() {
+  let editor = document.getElementById("editor")
+  scrollToLineOfTextarea(editor, editor.scrollHeight)
+}
+
 
 main()
