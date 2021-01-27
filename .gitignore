@@ -5,3 +5,5 @@ venv/
 secret_key.txt
 
 node_modules/
+bundle.js
+bundle.js.map
