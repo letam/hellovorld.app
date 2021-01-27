@@ -550,6 +550,12 @@ function main() {
     }
   })
 
+  /* editor stuff -- GUI events */
+  let magicButton = document.getElementById("magic")
+  magicButton.addEventListener("click", function (e) {
+    magicFn()
+  })
+
   /* editor stuff -- magic */
   function magicFn() {
     if (editor.value.includes("// Game Loop")) {
