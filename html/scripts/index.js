@@ -561,6 +561,13 @@ function main() {
     if (editor.value.includes("// Game Loop")) {
       return
     }
+
+    // Stop the typing effect and prefill editor content as necessary
+    cancelTypingInitialValue = true
+    let welcomeMessage = getEditorWelcomeMessage()
+    let initialScript = getEditorInitialScript()
+    editor.value = welcomeMessage + initialScript
+
     editor.value += platformerScript
     setTimeout(() => scrollToBottomOfEditor(), 500)
     setTimeout(() => evalCode(), 1000)
