@@ -24,6 +24,10 @@
   color: rgba(216, 216, 216, 1);
 }
 
+body[data-theme="dark"] a {
+  color: white;
+}
+
 .o-01 {
   opacity: 0.01;
 }

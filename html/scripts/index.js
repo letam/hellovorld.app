@@ -925,12 +925,14 @@ function themeConfiguration() {
   let editor = document.getElementById("editor")
   function setDarkmodeTheme() {
     document.body.classList.add("bg-black-90", "near-white")
+    document.body.dataset.theme = "dark"
     editor.classList.add("darkmode")
     currentTheme = "dark"
     localStorage.setItem("theme", currentTheme)
   }
   function setLightmodeTheme() {
     document.body.classList.remove("bg-black-90", "near-white")
+    delete document.body.dataset.theme
     editor.classList.remove("darkmode")
     currentTheme = "light"
     localStorage.setItem("theme", currentTheme)
