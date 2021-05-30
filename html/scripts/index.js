@@ -330,17 +330,24 @@ function main() {
     }
   })
 
+  /* Expand editor vertical space (hiding other elements) */
   let isExpandedV = false
+  const ICON_ARROW_UP = "⬆"
+  const ICON_ARROW_DOWN = "⬇"
   // eslint-disable-next-line no-unused-vars
   document.getElementById("expand-editor-v").addEventListener("click", (e) => {
     if (isExpandedV) {
       // TODO: show stuff
-      document.getElementById("stuff").style.display = ""
-	  e.target.innerText = "⬆"
+      Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
+        el.style.display = ""
+      })
+      e.target.innerText = ICON_ARROW_UP
     } else {
       // TODO: hide stuff
-      document.getElementById("stuff").style.display = "none"
-	  e.target.innerText = "⬇"
+      Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
+        el.style.display = "none"
+      })
+      e.target.innerText = ICON_ARROW_DOWN
     }
     isExpandedV = !isExpandedV
   })
