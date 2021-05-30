@@ -342,12 +342,14 @@ function main() {
         el.style.display = "none"
       })
       e.target.innerText = ICON_ARROW_DOWN
+      document.querySelector("#editor").style.height = `calc(100vh - ${2 * 44}px)`
     } else {
       // Show stuff
       Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
         el.style.display = ""
       })
       e.target.innerText = ICON_ARROW_UP
+      document.querySelector("#editor").style.height = ``
     }
     isExpandedV = !isExpandedV
   })
