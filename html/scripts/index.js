@@ -336,18 +336,18 @@ function main() {
   const ICON_ARROW_DOWN = "⬇"
   // eslint-disable-next-line no-unused-vars
   document.getElementById("expand-editor-v").addEventListener("click", (e) => {
-    if (isExpandedV) {
-      // TODO: show stuff
-      Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
-        el.style.display = ""
-      })
-      e.target.innerText = ICON_ARROW_UP
-    } else {
-      // TODO: hide stuff
+    if (!isExpandedV) {
+      // Hide stuff
       Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
         el.style.display = "none"
       })
       e.target.innerText = ICON_ARROW_DOWN
+    } else {
+      // Show stuff
+      Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
+        el.style.display = ""
+      })
+      e.target.innerText = ICON_ARROW_UP
     }
     isExpandedV = !isExpandedV
   })
