@@ -336,9 +336,11 @@ function main() {
     if (isExpandedV) {
       // TODO: show stuff
       document.getElementById("stuff").style.display = ""
+	  e.target.innerText = "⬆"
     } else {
       // TODO: hide stuff
       document.getElementById("stuff").style.display = "none"
+	  e.target.innerText = "⬇"
     }
     isExpandedV = !isExpandedV
   })
