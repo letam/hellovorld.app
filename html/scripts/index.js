@@ -330,6 +330,19 @@ function main() {
     }
   })
 
+  let isExpandedV = false
+  // eslint-disable-next-line no-unused-vars
+  document.getElementById("expand-editor-v").addEventListener("click", (e) => {
+    if (isExpandedV) {
+      // TODO: show stuff
+      document.getElementById("stuff").style.display = ""
+    } else {
+      // TODO: hide stuff
+      document.getElementById("stuff").style.display = "none"
+    }
+    isExpandedV = !isExpandedV
+  })
+
   let midContainer = document
     .getElementById("console")
     .querySelector("[data-level='middle']")
