@@ -6,6 +6,8 @@ console.log("hello")
 let bag = {}
 let currentTheme = localStorage.getItem("theme") || "dark"
 
+const isIOS = navigator.userAgent.match(/ipad|iphone|ipod/i)
+
 function main() {
   // eslint-disable-next-line no-unused-vars
   let lesson = document.getElementById("lesson")
@@ -342,7 +344,9 @@ function main() {
         el.style.display = "none"
       })
       e.target.innerText = ICON_ARROW_DOWN
-      document.querySelector("#editor").style.height = `calc(100vh - ${2 * 44}px)`
+      document.querySelector("#editor").style.height = isIOS
+        ? `calc(100vh - ${2 * 44}px - 50px)`
+        : `calc(100vh - ${2 * 44}px)`
     } else {
       // Show stuff
       Array.from(document.getElementsByClassName("stuff")).forEach((el) => {
