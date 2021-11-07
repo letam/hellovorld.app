@@ -1,4 +1,22 @@
 
+// Disable user-select when holding a button
+function disableTouchSelect() {
+  document.body.style.userSelect = "none"
+  document.body.style.webkitUserSelect = "none"
+}
+
+function restoreTouchSelect() {
+  document.body.style.userSelect = ""
+  document.body.style.webkitUserSelect = ""
+}
+
+let allButtons = document.querySelectorAll("button")
+for (let button of allButtons) {
+  button.addEventListener("touchstart", disableTouchSelect)
+  button.addEventListener("touchend", restoreTouchSelect)
+}
+// TODO Refactor possibly
+
 setKeyArrowLeftEventListeners()
 function setKeyArrowLeftEventListeners() {
   let arrowLeft = document.getElementById("key-arrow-left")
