@@ -13,7 +13,7 @@ bun install
 
 ### Using Build Script
 ```bash
-./build.sh
+bun build-dist
 ```
 
 ## Run
@@ -21,7 +21,7 @@ bun install
 After building, serve the application:
 
 ```bash
-bunx serve dist
+bun serve-dist
 ```
 
-Then open your browser to the provided URL (typically `http://localhost:3000`).
+Then open your browser to the provided URL (typically `http://localhost:8000`).
