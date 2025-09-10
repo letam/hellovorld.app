@@ -1,9 +1,9 @@
 {
-  "name": "bita.sh",
+  "name": "hellovorld.app",
   "version": "0.0.9",
   "description": "programming console",
   "main": "index.html",
-  "repository": "https://github.com/letam/bita.sh",
+  "repository": "https://github.com/letam/hellovorld.app",
   "author": "Tam Le",
   "license": "MIT",
   "scripts": {

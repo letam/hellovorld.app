@@ -1,9 +1,5 @@
 tmp/
-html/dist/
-
-*.pyc
-venv/
-secret_key.txt
+dist/
 
 node_modules/
 bundle.js
