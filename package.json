@@ -7,6 +7,7 @@
   "author": "Tam Le",
   "license": "MIT",
   "scripts": {
+    "serve-src": "python3 -m http.server -d src 3000",
     "build-js": "esbuild src/scripts/index.js --bundle --minify --sourcemap --outfile=bundle.js",
     "build-dist": "./util/build.sh",
     "serve-dist": "python3 -m http.server -d dist 8000"

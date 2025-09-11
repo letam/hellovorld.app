@@ -9,6 +9,16 @@ A programming console and course application. (WIP)
 bun install
 ```
 
+## Development
+
+To serve the project in development mode:
+
+```bash
+bun serve-src
+```
+
+This serves the source files directly from the `src/` directory on `http://localhost:3000`. The HTML file will load the original JavaScript files from `src/scripts/`.
+
 ## Build
 
 ### Using Build Script

@@ -26,7 +26,9 @@ cd - >/dev/null
 
 
 #-04 Create dist/index.html with hash-named bundle file selected
-sed -E "s|( src=\"./$filename_wo_ext)(.js\")|\1.$filename_hash\2|" src/index.html > dist/index.html
+sed -E "s|( src=\")./scripts/index(.js\")|\1./$filename_wo_ext\2|" src/index.html > dist/index.html.tmp
+sed -E "s|( src=\"./$filename_wo_ext)(.js\")|\1.$filename_hash\2|" dist/index.html.tmp > dist/index.html
+rm dist/index.html.tmp*
 
 
 #-05 Copy styles
